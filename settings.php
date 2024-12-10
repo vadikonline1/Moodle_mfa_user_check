@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
@@ -21,23 +21,14 @@ if ($hassiteconfig) {
             get_string('pluginenabled_desc', 'local_mfa_user_check'),
             0
         ));
-
-        $settings->add(new admin_setting_configtext(
-            'local_mfa_user_check/redirect_url',
-            get_string('redirecturl', 'local_mfa_user_check'),
-            get_string('redirecturl_desc', 'local_mfa_user_check'),
-            '/admin/tool/mfa/user_preferences.php',
-            PARAM_URL
-        ));
-		
-		$settings->add(new admin_setting_configtextarea(
-        'local_mfa_user_check/exclude_urls',
-        get_string('exclude_urls', 'local_mfa_user_check'),
-        get_string('exclude_urls_list', 'local_mfa_user_check'),
-        '/admin/tool/mfa/action.php and /admin/tool/mfa/guide.php',
-        PARAM_TEXT
+		// Setarea pentru Whitelist_Users_ID
+		$settings->add(new admin_setting_configtext(
+			'local_mfa_user_check/whitelist_users_id',
+			get_string('whitelist_users_id', 'local_mfa_user_check'),
+			get_string('whitelist_users_id_desc', 'local_mfa_user_check'),
+			'2', // ID implicit
+			PARAM_TEXT
 		));
-        
     } else {
         set_config('enabled', 0, 'local_mfa_user_check');
     }
